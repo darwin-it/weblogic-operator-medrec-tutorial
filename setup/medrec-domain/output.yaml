@@ -1,0 +1,115 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: 2019-08-23T14:36:24Z
+    generateName: medrec-domain-introspect-domain-job-
+    labels:
+      controller-uid: 61caba15-c5b3-11e9-bdbc-0a580aed2a92
+      job-name: medrec-domain-introspect-domain-job
+    name: medrec-domain-introspect-domain-job-rxsbv
+    namespace: medrec-domain-ns
+    ownerReferences:
+    - apiVersion: batch/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Job
+      name: medrec-domain-introspect-domain-job
+      uid: 61caba15-c5b3-11e9-bdbc-0a580aed2a92
+    resourceVersion: "21540"
+    selfLink: /api/v1/namespaces/medrec-domain-ns/pods/medrec-domain-introspect-domain-job-rxsbv
+    uid: 61ccc06b-c5b3-11e9-bdbc-0a580aed2a92
+  spec:
+    activeDeadlineSeconds: 60
+    containers:
+    - command:
+      - /weblogic-operator/scripts/introspectDomain.sh
+      env:
+      - name: NAMESPACE
+        value: medrec-domain-ns
+      - name: DOMAIN_UID
+        value: medrec-domain
+      - name: DOMAIN_HOME
+        value: /u01/oracle/user_projects/domains/medrec-domain
+      - name: NODEMGR_HOME
+        value: /u01/nodemanager
+      - name: LOG_HOME
+      - name: INTROSPECT_HOME
+        value: /u01/oracle/user_projects/domains/medrec-domain
+      - name: SERVER_OUT_IN_POD_LOG
+        value: "true"
+      - name: CREDENTIALS_SECRET_NAME
+        value: medrec-domain-weblogic-credentials
+      image: fra.ocir.io/darwin/weblogic-operator-medrec-tutorial:latest
+      imagePullPolicy: Always
+      name: medrec-domain-introspect-domain-job
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /weblogic-operator/secrets
+        name: weblogic-credentials-volume
+        readOnly: true
+      - mountPath: /weblogic-operator/scripts
+        name: weblogic-domain-cm-volume
+        readOnly: true
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-k5bqn
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: ocirsecret
+    nodeName: 10.0.11.2
+    priority: 0
+    restartPolicy: Never
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: weblogic-credentials-volume
+      secret:
+        defaultMode: 420
+        secretName: medrec-domain-weblogic-credentials
+    - configMap:
+        defaultMode: 365
+        name: weblogic-domain-cm
+      name: weblogic-domain-cm-volume
+    - name: default-token-k5bqn
+      secret:
+        defaultMode: 420
+        secretName: default-token-k5bqn
+  status:
+    containerStatuses:
+    - containerID: docker://5a22a3474230108bde2434956fa634db2cebbcd0c3cbb241c54b406757b06170
+      image: fra.ocir.io/darwin/weblogic-operator-medrec-tutorial:latest
+      imageID: docker-pullable://fra.ocir.io/darwin/weblogic-operator-medrec-tutorial@sha256:c1299b5565c5d9c8583ab9e6f547dc7d19ddd52ad6dae418776ccfc3be297913
+      lastState: {}
+      name: medrec-domain-introspect-domain-job
+      ready: false
+      restartCount: 0
+      state:
+        running:
+          startedAt: 2019-08-23T14:37:33Z
+    message: Pod was active on the node longer than the specified deadline
+    phase: Failed
+    podIP: 10.244.2.4
+    qosClass: BestEffort
+    reason: DeadlineExceeded
+    startTime: 2019-08-23T14:36:24Z
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
