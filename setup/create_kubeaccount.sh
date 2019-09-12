@@ -1,7 +1,7 @@
 #!/bin/bash
 SCRIPTPATH=$(dirname $0)
 #
-. $SCRIPTPATH/oek_env.sh
+. $SCRIPTPATH/oke_env.sh
 echo Create helm-user-cluster-admin-role
 cat << EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1

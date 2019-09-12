@@ -2,5 +2,5 @@
 SCRIPTPATH=$(dirname $0)
 #
 . $SCRIPTPATH/oke_env.sh
-echo setup OCI
-oci setup config
+echo Get K8s pods
+kubectl -n kube-system get pods

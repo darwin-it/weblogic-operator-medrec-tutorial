@@ -1,7 +1,7 @@
 #!/bin/bash
 SCRIPTPATH=$(dirname $0)
 #
-. $SCRIPTPATH/oek_env.sh
+. $SCRIPTPATH/oke_env.sh
 echo Install Weblogic Operator $WL_OPERATOR_NAME
 cd $HELM_CHARTS_HOME
 helm install kubernetes/charts/weblogic-operator \
@@ -10,3 +10,4 @@ helm install kubernetes/charts/weblogic-operator \
   --set image=oracle/weblogic-kubernetes-operator:2.0 \
   --set serviceAccount=$K8S_NS:$K8S_SA \
   --set "domainNamespaces={}"
+cd $SCRIPTPATH

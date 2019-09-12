@@ -2,5 +2,5 @@
 SCRIPTPATH=$(dirname $0)
 #
 . $SCRIPTPATH/oke_env.sh
-echo setup OCI
-oci setup config
+echo K8s Can I deploy?
+kubectl auth can-i create deploy
