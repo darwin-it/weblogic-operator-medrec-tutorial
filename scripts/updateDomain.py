@@ -25,10 +25,10 @@ databasePassword = 'welcome1'
 
 def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, drvName, drvURL, dbUsername, dbPassword, target):
   #Check DataSource
-  cd('/JDBCSystemResources/' + dsName)
-  print 'cmo: '
-  print cmo.getName()
-  if cmo!=None and cmo.getName()==dsName:
+  cd('/JDBCSystemResources/' )
+  resources=ls()
+  if resources.find(dsName)>-1:
+    cd('/JDBCSystemResources/' + dsName)
     jdbcResource=cmo
     print 'The JDBC Data Source ' + dsName + ' already exists.'
   else:
@@ -38,19 +38,20 @@ def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityI
     cd('/')
     # Create data source
     jdbcSystemResource = create(dsName, 'JDBCSystemResource')
-    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    resource='/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName
+    cd(resource)
     jdbcResource = cmo
     jdbcResource.setName(dsName)
     # Set JNDI name
     print '.. Create JDBCDataSourceParams'
-    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    cd(resource)
     create('myJdbcDataSourceParams','JDBCDataSourceParams')
     cd('JDBCDataSourceParams/NO_NAME_0')
     set('JNDIName', java.lang.String(dsJNDIName))
     set('GlobalTransactionsProtocol', 'TwoPhaseCommit')
     # Create connection pool
     print '.. Create JDBCConnectionPoolParams'
-    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    cd(resource)
     create('myJdbcConnectionPoolParams','JDBCConnectionPoolParams')
     cd('JDBCConnectionPoolParams/NO_NAME_0')    
     set('InitialCapacity', initialCapacity)
@@ -58,7 +59,7 @@ def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityI
     set('CapacityIncrement', capacityIncrement)
     # Create driver settings
     print '.. Create JDBCDriverParams'
-    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    cd(resource)
     create('myJdbcDriverParams','JDBCDriverParams')
     cd('JDBCDriverParams/NO_NAME_0')
     set('DriverName', drvName)
@@ -73,7 +74,7 @@ def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityI
     set('Value', dbUsername)  
     # Set data source target
     print '.. Assign '+dsName+ ' to '+target
-    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    cd(resource)
     assign('JDBCSystemResource', dsName, 'Target', target)
     print 'Data Source created successfully.'
   return jdbcResource;
