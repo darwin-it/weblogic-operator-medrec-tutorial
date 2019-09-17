@@ -23,7 +23,6 @@ driverURL = 'jdbc:oracle:thin:@localhost:1521:orcl'
 databaseUsername = 'medrec'
 databasePassword = 'welcome1'
 
-
 def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, drvName, drvURL, dbUsername, dbPassword, target):
   #Check DataSource
   cd('/JDBCSystemResources/' + dsName)
@@ -65,7 +64,7 @@ def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityI
     set('DriverName', drvName)
     set('Url', drvURL)
     set('PasswordEncrypted', dbPassword)
-    #set('UseXADataSourceInterface', 'false')
+    set('UseXADataSourceInterface', 'true')
     print '.. Create User Property'
     create('myProperties','Properties')
     cd('Properties/NO_NAME_0')
