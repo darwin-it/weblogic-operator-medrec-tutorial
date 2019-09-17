@@ -7,4 +7,9 @@ COPY target/opdemo.war $DOMAIN_HOME/wlsdeploy/applications/
 RUN chown -R oracle:oracle $DOMAIN_HOME/wlsdeploy/applications/ && \
     chmod -R a+xwr $DOMAIN_HOME/wlsdeploy/applications/
 
+COPY scripts/* ${DOMAIN_HOME}/docker-build-tmp/
+
+RUN wlst.sh -skipWLSModuleScanning -loadProperties ${DOMAIN_HOME}/docker-build-tmp/datasource.properties \
+      ${DOMAIN_HOME}/docker-build-tmp/updateDomain.py
+
 WORKDIR ${DOMAIN_HOME}

@@ -18,7 +18,7 @@ COPY scripts/* ${DOMAIN_HOME}/docker-build-tmp/
 COPY target/opdemo.war $DOMAIN_HOME/wlsdeploy/applications/
 
 RUN wlst.sh -skipWLSModuleScanning -loadProperties ${DOMAIN_HOME}/docker-build-tmp/datasource.properties \
-      ${DOMAIN_HOME}/docker-build-tmp/model.py
+      ${DOMAIN_HOME}/docker-build-tmp/createDomain.py
 
 RUN rm -rf ${DOMAIN_HOME}/docker-build-tmp && \
     chown -R oracle:oracle ${DOMAIN_HOME} && \
