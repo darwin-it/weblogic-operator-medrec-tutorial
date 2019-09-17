@@ -25,46 +25,57 @@ databasePassword = 'welcome1'
 
 
 def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, drvName, drvURL, dbUsername, dbPassword, target):
-  try:
-    #Check DataSource
-    cd('/JDBCSystemResources/' + dsName)
+  #Check DataSource
+  cd('/JDBCSystemResources/' + dsName)
+  print 'cmo: '
+  print cmo.getName()
+  if cmo!=None and cmo.getName()==dsName:
     jdbcResource=cmo
     print 'The JDBC Data Source ' + dsName + ' already exists.'
-  except WLSTException:
+  else:
     print 'Create DataSource ' + dsName + ' with JNDIName: '+dsJNDIName
     # Create a DataSource
-    edit()
-    startEdit()
     print 'Creating new JDBC Data Source named ' + dsName + '.'
     cd('/')
-    # Save reference to target server
-    targetServer = getMBean('/Servers/' + targetName)
     # Create data source
     jdbcSystemResource = create(dsName, 'JDBCSystemResource')
-    jdbcResource = jdbcSystemResource.getJDBCResource()
+    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    jdbcResource = cmo
     jdbcResource.setName(dsName)
     # Set JNDI name
-    jdbcResourceParameters = jdbcResource.getJDBCDataSourceParams()
-    jdbcResourceParameters.setJNDINames([dsJNDIName])
-    jdbcResourceParameters.setGlobalTransactionsProtocol('TwoPhaseCommit')
+    print '.. Create JDBCDataSourceParams'
+    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    create('myJdbcDataSourceParams','JDBCDataSourceParams')
+    cd('JDBCDataSourceParams/NO_NAME_0')
+    set('JNDIName', java.lang.String(dsJNDIName))
+    set('GlobalTransactionsProtocol', 'TwoPhaseCommit')
     # Create connection pool
-    connectionPool = jdbcResource.getJDBCConnectionPoolParams()
-    connectionPool.setInitialCapacity(initialCapacity)
-    connectionPool.setMaxCapacity(maxCapacity)
-    connectionPool.setCapacityIncrement(capacityIncrement)
+    print '.. Create JDBCConnectionPoolParams'
+    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    create('myJdbcConnectionPoolParams','JDBCConnectionPoolParams')
+    cd('JDBCConnectionPoolParams/NO_NAME_0')    
+    set('InitialCapacity', initialCapacity)
+    set('MaxCapacity', maxCapacity)
+    set('CapacityIncrement', capacityIncrement)
     # Create driver settings
-    driver = jdbcResource.getJDBCDriverParams()
-    driver.setDriverName(drvName)
-    driver.setUrl(drvURL)
-    driver.setPassword(dbPassword)
-    driverProperties = driver.getProperties()
-    userProperty = driverProperties.createProperty('user')
-    userProperty.setValue(dbUsername)  
+    print '.. Create JDBCDriverParams'
+    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    create('myJdbcDriverParams','JDBCDriverParams')
+    cd('JDBCDriverParams/NO_NAME_0')
+    set('DriverName', drvName)
+    set('Url', drvURL)
+    set('PasswordEncrypted', dbPassword)
+    #set('UseXADataSourceInterface', 'false')
+    print '.. Create User Property'
+    create('myProperties','Properties')
+    cd('Properties/NO_NAME_0')
+    create('user','Property')
+    cd('Property/user')
+    set('Value', dbUsername)  
     # Set data source target
-    jdbcSystemResource.addTarget(target)
-    # Activate changes
-    save()
-    activate(block='true')
+    print '.. Assign '+dsName+ ' to '+target
+    cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+    assign('JDBCSystemResource', dsName, 'Target', target)
     print 'Data Source created successfully.'
   return jdbcResource;
 def main():
@@ -82,4 +93,4 @@ def main():
 
 #call main()
 main()
-exit()
+#exit()
