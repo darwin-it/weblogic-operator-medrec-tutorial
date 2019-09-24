@@ -61,6 +61,7 @@ spec:
   # - "ADMIN_ONLY" will start up only the administration server (no managed servers will be started)
   # - "IF_NEEDED" will start all non-clustered servers, including the administration server and clustered servers up to the replica count
   serverStartPolicy: "IF_NEEDED"
+  #serverStartPolicy: "NEVER"
 
   serverPod:
     # an (optional) list of environment variable to be set on the servers
@@ -105,3 +106,7 @@ spec:
 
   # The number of managed servers to start for any unlisted clusters
   # replicas: 1
+  #
+  # Domain Configuration Overrides
+  configOverrides: jdbccm
+  configOverrideSecrets: [mrdbsecret,dbsecret]
