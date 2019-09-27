@@ -83,20 +83,23 @@ def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityI
 def deployMedrec(): 
   cd("/")
   clusterName = "medrec-cluster"
-  print 'Deploy Medrec Application to cluster '+clusterName
+  print '.. Deploy Medrec Application to cluster '+clusterName
   cluster=get('/Clusters/'+clusterName)
-  print 'Cluster name: '+cluster.name
   appDpl=create("MedRec", "AppDeployment")
-  appDpl.setTargets(jarray.array([cluster],TargetMBean))
   appDpl.setModuleType("ear")
   appDpl.setSourcePath("wlsdeploy/applications/medrec.ear")
+  print '.. Set target to '+cluster.name
+  appDpl.setTargets(jarray.array([cluster],TargetMBean))
+
 #
 def main():
   try:
     print '\nRead Domain '+domainHome
     readDomain(domainHome)
     print '\nCreate Datasource '+dsName
-    dataSource = createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, driverName, driverURL,  databaseUsername, databasePassword,targetName);
+    dataSource = createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, driverName, driverURL,  databaseUsername, databasePassword,targetName)
+    print '\nDeploy application'
+    deployMedrec()
     print '\nUpdate and close Domain '
     updateDomain()
     closeDomain()
