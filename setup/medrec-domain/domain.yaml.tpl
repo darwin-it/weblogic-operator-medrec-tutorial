@@ -60,7 +60,7 @@ spec:
   # - "NEVER" will not start any server in the domain
   # - "ADMIN_ONLY" will start up only the administration server (no managed servers will be started)
   # - "IF_NEEDED" will start all non-clustered servers, including the administration server and clustered servers up to the replica count
-  serverStartPolicy: "NEVER"
+  serverStartPolicy: "$SVR_STRT_POLICY"
   #serverStartPolicy: "NEVER"
 
   serverPod:
