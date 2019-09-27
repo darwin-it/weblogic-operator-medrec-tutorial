@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<deployment-plan xmlns="http://xmlns.oracle.com/weblogic/deployment-plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/weblogic/deployment-plan http://xmlns.oracle.com/weblogic/deployment-plan/1.0/deployment-plan.xsd" global-variables="false">
+  <application-name>medrec</application-name>
+  <variable-definition>
+    <variable>
+      <name>ServletDescriptor_Faces Servlet_ServletName_15222466874010</name>
+      <value>Faces Servlet</value>
+    </variable>
+    <variable>
+      <name>ServletDescriptor_ServiceRegistryServlet_ServletName_15222466874101</name>
+      <value>ServiceRegistryServlet</value>
+    </variable>
+    <variable>
+      <name>ServletDescriptor_RecordCreationFacadeServiceServlethttp_ServletName_15222466874122</name>
+      <value>RecordCreationFacadeServiceServlethttp</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Name_15222467400763</name>
+      <value>EJB_Before_SessionEjbBusinessMethods</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Description_15222467400774</name>
+      <value></value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_DyeFilteringEnabled_15222469953545</name>
+      <value>false</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Enabled_15222469953556</name>
+      <value>false</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Actions_15222469953647</name>
+      <value>"StackDumpAction"</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_DyeMask_15222469953648</name>
+      <value></value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_Name_15222477304350</name>
+      <value>DebugPatientService</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_Description_15222477304361</name>
+      <value></value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_LocationType_15222477304362</name>
+      <value>around</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_Pointcut_15222477304363</name>
+      <value>execution (* *impl.PatientServiceImpl auth*(...))</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_DyeFilteringEnabled_15222477533774</name>
+      <value>false</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_Enabled_15222477533785</name>
+      <value>true</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_Actions_15222477533816</name>
+      <value>"TraceElapsedTimeAction"</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_DebugPatientService_DyeMask_15222477533827</name>
+      <value></value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Name_15222494008730</name>
+      <value>Servlet_Before_Session</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Description_15222494008731</name>
+      <value></value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_Servlet_Before_Session_DyeFilteringEnabled_15222494518742</name>
+      <value>true</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Enabled_15222494518743</name>
+      <value>true</value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Actions_15222494518824</name>
+      <value></value>
+    </variable>
+    <variable>
+      <name>WLDFInstrumentationMonitor_Servlet_Before_Session_DyeMask_15222494518825</name>
+      <value>ADDR1</value>
+    </variable>
+  </variable-definition>
+  <module-override>
+    <module-name>medrec.ear</module-name>
+    <module-type>ear</module-type>
+    <module-descriptor external="false">
+      <root-element>weblogic-application</root-element>
+      <uri>META-INF/weblogic-application.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>application</root-element>
+      <uri>META-INF/application.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>wldf-resource</root-element>
+      <uri>META-INF/weblogic-diagnostics.xml</uri>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Name_15222467400763</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="EJB_Before_SessionEjbBusinessMethods"]/name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Description_15222467400774</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="EJB_Before_SessionEjbBusinessMethods"]/description</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_DyeFilteringEnabled_15222469953545</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="EJB_Before_SessionEjbBusinessMethods"]/dye-filtering-enabled</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Enabled_15222469953556</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="EJB_Before_SessionEjbBusinessMethods"]/enabled</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_Actions_15222469953647</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="EJB_Before_SessionEjbBusinessMethods"]/action</xpath>
+        <origin>planbased</origin>
+        <operation>replace</operation>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_EJB_Before_SessionEjbBusinessMethods_DyeMask_15222469953648</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="EJB_Before_SessionEjbBusinessMethods"]/dye-mask</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_Name_15222477304350</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_Description_15222477304361</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/description</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_LocationType_15222477304362</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/location-type</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_Pointcut_15222477304363</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/pointcut</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_DyeFilteringEnabled_15222477533774</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/dye-filtering-enabled</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_Enabled_15222477533785</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/enabled</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_Actions_15222477533816</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/action</xpath>
+        <origin>planbased</origin>
+        <operation>replace</operation>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_DebugPatientService_DyeMask_15222477533827</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="DebugPatientService"]/dye-mask</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Name_15222494008730</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="Servlet_Before_Session"]/name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Description_15222494008731</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="Servlet_Before_Session"]/description</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_Servlet_Before_Session_DyeFilteringEnabled_15222494518742</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="Servlet_Before_Session"]/dye-filtering-enabled</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Enabled_15222494518743</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="Servlet_Before_Session"]/enabled</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_Servlet_Before_Session_Actions_15222494518824</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="Servlet_Before_Session"]/action</xpath>
+        <origin>planbased</origin>
+        <operation>replace</operation>
+      </variable-assignment>
+      <variable-assignment>
+        <name>WLDFInstrumentationMonitor_Servlet_Before_Session_DyeMask_15222494518825</name>
+        <xpath>/wldf-resource/instrumentation/wldf-instrumentation-monitor/[name="Servlet_Before_Session"]/dye-mask</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+    </module-descriptor>
+    <module-descriptor external="true">
+      <root-element>persistence-configuration</root-element>
+      <uri>medrec-domain.jar!/META-INF/persistence-configuration.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>persistence</root-element>
+      <uri>medrec-domain.jar!/META-INF/persistence.xml</uri>
+    </module-descriptor>
+  </module-override>
+  <module-override>
+    <module-name>common.jar</module-name>
+    <module-type>ejb</module-type>
+    <module-descriptor external="true">
+      <root-element>weblogic-ejb-jar</root-element>
+      <uri>META-INF/weblogic-ejb-jar.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>ejb-jar</root-element>
+      <uri>META-INF/ejb-jar.xml</uri>
+    </module-descriptor>
+  </module-override>
+  <module-override>
+    <module-name>medrec-domain.jar</module-name>
+    <module-type>ejb</module-type>
+    <module-descriptor external="true">
+      <root-element>weblogic-ejb-jar</root-element>
+      <uri>META-INF/weblogic-ejb-jar.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>ejb-jar</root-element>
+      <uri>META-INF/ejb-jar.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="true">
+      <root-element>persistence-configuration</root-element>
+      <uri>META-INF/persistence-configuration.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>persistence</root-element>
+      <uri>META-INF/persistence.xml</uri>
+    </module-descriptor>
+  </module-override>
+  <module-override>
+    <module-name>medrec-facade.jar</module-name>
+    <module-type>ejb</module-type>
+    <module-descriptor external="true">
+      <root-element>weblogic-ejb-jar</root-element>
+      <uri>META-INF/weblogic-ejb-jar.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>ejb-jar</root-element>
+      <uri>META-INF/ejb-jar.xml</uri>
+    </module-descriptor>
+  </module-override>
+  <module-override>
+    <module-name>medrec-web.war</module-name>
+    <module-type>war</module-type>
+    <module-descriptor external="false">
+      <root-element>weblogic-web-app</root-element>
+      <uri>WEB-INF/weblogic.xml</uri>
+      <variable-assignment>
+        <name>ServletDescriptor_Faces Servlet_ServletName_15222466874010</name>
+        <xpath>/weblogic-web-app/servlet-descriptor/[servlet-name="Faces Servlet"]/servlet-name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>web-app</root-element>
+      <uri>WEB-INF/web.xml</uri>
+    </module-descriptor>
+  </module-override>
+  <module-override>
+    <module-name>medrec-jaxrpc-facade-broker.war</module-name>
+    <module-type>war</module-type>
+    <module-descriptor external="false">
+      <root-element>weblogic-web-app</root-element>
+      <uri>WEB-INF/weblogic.xml</uri>
+      <variable-assignment>
+        <name>ServletDescriptor_ServiceRegistryServlet_ServletName_15222466874101</name>
+        <xpath>/weblogic-web-app/servlet-descriptor/[servlet-name="ServiceRegistryServlet"]/servlet-name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>ServletDescriptor_RecordCreationFacadeServiceServlethttp_ServletName_15222466874122</name>
+        <xpath>/weblogic-web-app/servlet-descriptor/[servlet-name="RecordCreationFacadeServiceServlethttp"]/servlet-name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>web-app</root-element>
+      <uri>WEB-INF/web.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>weblogic-webservices</root-element>
+      <uri>WEB-INF/weblogic-webservices.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>webservices</root-element>
+      <uri>WEB-INF/webservices.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>webservice-policy-ref</root-element>
+      <uri>WEB-INF/weblogic-webservices-policy.xml</uri>
+    </module-descriptor>
+  </module-override>
+  <module-override>
+    <module-name>medrec-jaxws-facade-broker.war</module-name>
+    <module-type>war</module-type>
+    <module-descriptor external="true">
+      <root-element>weblogic-web-app</root-element>
+      <uri>WEB-INF/weblogic.xml</uri>
+      <hash-code>1522249451889</hash-code>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>web-app</root-element>
+      <uri>WEB-INF/web.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="true">
+      <root-element>weblogic-webservices</root-element>
+      <uri>WEB-INF/weblogic-webservices.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>webservices</root-element>
+      <uri>WEB-INF/webservices.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="true">
+      <root-element>webservice-policy-ref</root-element>
+      <uri>WEB-INF/weblogic-webservices-policy.xml</uri>
+    </module-descriptor>
+  </module-override>
+  <config-root>/home/oracle/wls12c_tt/labs/Lab08/ear/plan</config-root>
+</deployment-plan>
