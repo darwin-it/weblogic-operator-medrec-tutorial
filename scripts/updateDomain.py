@@ -22,7 +22,15 @@ driverName = 'oracle.jdbc.xa.client.OracleXADataSource'
 driverURL = 'jdbc:oracle:thin:@localhost:1521:orcl'
 databaseUsername = 'medrec'
 databasePassword = 'welcome1'
-
+#
+# Get Cluster
+def getCluster(clusterName):
+  cd ('/Cluster/'+clusterName)
+  cluster = cmo
+  print cluster.name
+  return cluster
+#
+# Create Datasource
 def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, drvName, drvURL, dbUsername, dbPassword, target):
   #Check DataSource
   cd('/JDBCSystemResources/' )
@@ -84,7 +92,7 @@ def deployMedrec():
   cd("/")
   clusterName = "medrec-cluster"
   print '.. Deploy Medrec Application to cluster '+clusterName
-  cluster=get('/Clusters/'+clusterName)
+  cluster=getCluster(clusterName)
   appDpl=create("MedRec", "AppDeployment")
   appDpl.setModuleType("ear")
   appDpl.setSourcePath("wlsdeploy/applications/medrec.ear")
