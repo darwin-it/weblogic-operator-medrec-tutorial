@@ -89,16 +89,16 @@ def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityI
 #
 # Deploy Medrec application
 def deployMedrec(): 
-  cd("/")
   clusterName = "medrec-cluster"
   print '.. Deploy Medrec Application to cluster '+clusterName
   cluster=getCluster(clusterName)
-  appDpl=create("MedRec", "AppDeployment")
+  cd("/")
+  appDpl=create("MedRec","AppDeployment")
   appDpl.setModuleType("ear")
   appDpl.setSourcePath("wlsdeploy/applications/medrec.ear")
+  appDpl.setPlanPath("wlsdeploy/applications/medrec-plan.xml")
   print '.. Set target to '+cluster.name
   appDpl.setTargets(jarray.array([cluster],TargetMBean))
-
 #
 def main():
   try:
