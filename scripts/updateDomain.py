@@ -22,7 +22,15 @@ driverName = 'oracle.jdbc.xa.client.OracleXADataSource'
 driverURL = 'jdbc:oracle:thin:@localhost:1521:orcl'
 databaseUsername = 'medrec'
 databasePassword = 'welcome1'
-
+#
+# Get Cluster
+def getCluster(clusterName):
+  cd ('/Cluster/'+clusterName)
+  cluster = cmo
+  print cluster.name
+  return cluster
+#
+# Create Datasource
 def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, drvName, drvURL, dbUsername, dbPassword, target):
   #Check DataSource
   cd('/JDBCSystemResources/' )
@@ -78,12 +86,29 @@ def createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityI
     assign('JDBCSystemResource', dsName, 'Target', target)
     print 'Data Source created successfully.'
   return jdbcResource;
+#
+# Deploy Medrec application
+def deployMedrec(): 
+  clusterName = "medrec-cluster"
+  print '.. Deploy Medrec Application to cluster '+clusterName
+  cluster=getCluster(clusterName)
+  cd("/")
+  appDpl=delete("MedRec","AppDeployment")
+  appDpl=create("MedRec","AppDeployment")
+  appDpl.setModuleType("ear")
+  appDpl.setSourcePath("wlsdeploy/applications/medrec.ear")
+  appDpl.setPlanPath("wlsdeploy/applications/medrec-plan.xml")
+  print '.. Set target to '+cluster.name
+  appDpl.setTargets(jarray.array([cluster],TargetMBean))
+#
 def main():
   try:
     print '\nRead Domain '+domainHome
     readDomain(domainHome)
     print '\nCreate Datasource '+dsName
-    dataSource = createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, driverName, driverURL,  databaseUsername, databasePassword,targetName);
+    dataSource = createDataSource(dsName, dsJNDIName, initialCapacity, maxCapacity, capacityIncrement, driverName, driverURL,  databaseUsername, databasePassword,targetName)
+    print '\nDeploy application'
+    deployMedrec()
     print '\nUpdate and close Domain '
     updateDomain()
     closeDomain()
