@@ -2,7 +2,7 @@
 SCRIPTPATH=$(dirname $0)
 #
 . $SCRIPTPATH/oke_env.sh
-echo Upgrade traefik with namespace $WLS_DMN_NS
+echo Create Service for medrecdbhostname
 cat << EOF | kubectl apply -f -
 kind: Service
 apiVersion: v1
