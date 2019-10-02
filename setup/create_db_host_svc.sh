@@ -16,7 +16,7 @@ spec:
 kind: Endpoints
 apiVersion: v1
 metadata:
- name: medreck8s.sub40efe034a.medrecokecluste.oraclevcn.com
+ name: medrecdbhostname
 subsets:
  - addresses:
      - ip: 10.0.10.6
