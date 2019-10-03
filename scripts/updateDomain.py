@@ -93,7 +93,7 @@ def deployMedrec():
   print '.. Deploy Medrec Application to cluster '+clusterName
   cluster=getCluster(clusterName)
   cd("/")
-  appDpl=delete("MedRec","AppDeployment")
+ # appDpl=delete("MedRec","AppDeployment")
   appDpl=create("MedRec","AppDeployment")
   appDpl.setModuleType("ear")
   appDpl.setSourcePath("wlsdeploy/applications/medrec.ear")
